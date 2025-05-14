@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de SAIBOU ABDOU SALAM</title>
+    
+    <!-- Méta-descriptions pour le SEO -->
+    <meta name="description" content="Portfolio de SAIBOU ABDOU SALAM - Développeur Web & Mobile, Designer UI/UX et Co-fondateur de Fiablitech">
+    <meta name="keywords" content="développeur web, développeur mobile, UI/UX design, portfolio">
+    
+    <!-- Préchargement de ressources critiques -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Préchargement des ressources importantes -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Styles critiques inline pour éviter les FOUC (Flash of Unstyled Content) -->
+    <style>
+        /* Styles minimaux pour le premier rendu */
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: #f9fafb; color: #111827; overflow-x: hidden; }
+        .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+        @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+        
+        /* Ajout de styles personnalisés pour la responsivité */
+        @media (max-width: 640px) {
+            .text-5xl { font-size: 2.5rem; }
+            .py-16 { padding-top: 3rem; padding-bottom: 3rem; }
+            .py-20 { padding-top: 3rem; padding-bottom: 3rem; }
+        }
+        
+        /* Loading indicator */
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #f9fafb; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease-out; }
+        .spinner { border: 4px solid rgba(79, 70, 229, 0.1); border-radius: 50%; border-top: 4px solid #4f46e5; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* Styles critiques pour la mise en page initiale */
+        header { position: fixed; width: 100%; background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 1px 3px rgba(0,0,0,0.1); z-index: 50; }
+        header .container { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .hidden { display: none; }
+        
+        /* Styles pour le contenu lazy-loaded */
+        .lazy-image { opacity: 0; transition: opacity 0.3s ease; }
+        .lazy-image.loaded { opacity: 1; }
+    </style>
+    
+    <!-- Chargement optimisé des styles non critiques -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+    
+    <!-- Chargement asynchrone de TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+</head>
+<body class="bg-gray-50 font-sans overflow-x-hidden">
+    <!-- Loader -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white bg-opacity-95 shadow-sm z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl sm:text-2xl font-bold text-indigo-600">SAIBOU ABDOU SALAM</div>
+                <nav class="hidden md:flex space-x-6 lg:space-x-10">
+                    <a href="#accueil" class="text-gray-800 hover:text-indigo-600 transition duration-300">Accueil</a>
+                    <a href="#a-propos" class="text-gray-800 hover:text-indigo-600 transition duration-300">À propos</a>
+                    <a href="#competences" class="text-gray-800 hover:text-indigo-600 transition duration-300">Compétences</a>
+                    <a href="#projets" class="text-gray-800 hover:text-indigo-600 transition duration-300">Projets</a>
+                    <a href="#contact" class="text-gray-800 hover:text-indigo-600 transition duration-300">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
+                <a href="#accueil" class="block px-3 py-2 text-gray-800 hover:text-indigo-600 transition duration-300">Accueil</a>
+                <a href="#a-propos" class="block px-3 py-2 text-gray-800 hover:text-indigo-600 transition duration-300">À propos</a>
+                <a href="#competences" class="block px-3 py-2 text-gray-800 hover:text-indigo-600 transition duration-300">Compétences</a>
+                <a href="#projets" class="block px-3 py-2 text-gray-800 hover:text-indigo-600 transition duration-300">Projets</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-800 hover:text-indigo-600 transition duration-300">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-br from-indigo-50 via-white to-indigo-100">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex flex-col items-start" data-aos="fade-right" data-aos-duration="1000">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 leading-tight mb-4">
+                    Bonjour, je suis <span class="text-indigo-600">SAIBOU ABDOU SALAM</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8">Co-fondateur de Fiablitech | Développeur Web & Mobile | Designer UI/UX</p>
+                <div class="flex flex-wrap sm:flex-nowrap gap-4">
+                    <a href="#contact" class="w-full sm:w-auto bg-indigo-600 text-white text-center py-3 px-6 sm:px-8 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-1">
+                        Me Contacter
+                    </a>
+                    <a href="#projets" class="w-full sm:w-auto border border-indigo-600 text-center text-indigo-600 py-3 px-6 sm:px-8 rounded-lg hover:bg-indigo-50 transition duration-300 transform hover:-translate-y-1">
+                        Voir mes projets
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-12 md:mt-0" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative">
+                    <div class="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto bg-indigo-600 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="images/profile.jpg" alt="Votre Photo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x400?text=Votre+Photo'">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white rounded-full p-4 shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+                        <i class="fas fa-code text-2xl sm:text-3xl text-indigo-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="a-propos" class="py-12 sm:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">À Propos de Moi</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <img src="images/about.jpg" alt="À propos" class="rounded-lg shadow-lg max-w-full h-auto mx-auto" onerror="this.src='https://via.placeholder.com/600x400?text=À+Propos'">
+                </div>
+                <div class="w-full md:w-1/2 md:pl-12" data-aos="fade-left">
+                    <p class="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed">
+                        Actuellement en BTS MCO en formation initiale à l'Institut les Tourelles, je suis également co-fondateur de Fiablitech, une agence de développement web et mobile spécialisée dans la création de designs graphiques et de maquettes UI/UX.
+                    </p>
+                    <p class="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed">
+                        Avec une solide expérience en gestion administrative et en relation client, je combine mes compétences techniques et commerciales pour offrir des solutions digitales complètes et innovantes.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-sm">Développement Web</div>
+                        <div class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-sm">Développement Mobile</div>
+                        <div class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-sm">Design UI/UX</div>
+                        <div class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-sm">Gestion commerciale</div>
+                        <div class="bg-indigo-100 text-indigo-600 px-4 py-2 rounded-full text-sm">Relation client</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="py-12 sm:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Mes Compétences</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Compétence 1 -->
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="100">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-2xl sm:text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Développement Web & Mobile</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Création d'applications et sites web responsive avec des technologies modernes et performantes.</p>
+                </div>
+                
+                <!-- Compétence 2 -->
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="200">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-2xl sm:text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Design UI/UX</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Conception d'interfaces utilisateur intuitives et esthétiques offrant une expérience utilisateur exceptionnelle.</p>
+                </div>
+                
+                <!-- Compétence 3 -->
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg transition-transform duration-300 hover:-translate-y-2" data-aos="flip-left" data-aos-delay="300">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-2xl sm:text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Gestion Commerciale</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Management de projets, relation client et stratégies commerciales pour optimiser la croissance et la satisfaction client.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="py-12 sm:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Mes Projets</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Projet 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="images/project1.jpg" alt="Projet 1" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://via.placeholder.com/600x400?text=Fiablitech'">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Fiablitech</h3>
+                        <p class="text-gray-600 text-sm sm:text-base mb-4">Agence de développement web et mobile, création de designs graphiques et maquettes UI/UX.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">Web</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">Mobile</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative">
+                        <img src="images/project2.jpg" alt="Projet 2" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://via.placeholder.com/600x400?text=Projet+2'">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Nom du Projet 2</h3>
+                        <p class="text-gray-600 text-sm sm:text-base mb-4">Description courte du projet et des technologies utilisées.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">React</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">TailwindCSS</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="relative">
+                        <img src="images/project3.jpg" alt="Projet 3" class="w-full h-48 sm:h-56 object-cover" onerror="this.src='https://via.placeholder.com/600x400?text=Projet+3'">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Nom du Projet 3</h3>
+                        <p class="text-gray-600 text-sm sm:text-base mb-4">Description courte du projet et des technologies utilisées.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">Vue.js</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">Express</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-12 sm:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Contactez-moi</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-6 sm:p-8" data-aos="fade-up">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Nom</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 mb-2">Sujet</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 transition"></textarea>
+                        </div>
+                        <button type="submit" class="bg-indigo-600 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-1 w-full md:w-auto">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="mt-10 sm:mt-16">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                        <!-- Email -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-envelope text-xl sm:text-2xl text-indigo-600"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">Email</h3>
+                            <p class="text-gray-600 text-sm sm:text-base break-words">salamsaibou2002@gmail.com</p>
+                        </div>
+                        
+                        <!-- Téléphone -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-phone text-xl sm:text-2xl text-indigo-600"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">Téléphone</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">06 51 10 43 34</p>
+                        </div>
+                        
+                        <!-- Localisation -->
+                        <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-map-marker-alt text-xl sm:text-2xl text-indigo-600"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2">Localisation</h3>
+                            <p class="text-gray-600 text-sm sm:text-base">22 Rue Saint Maur, 76000 Rouen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 sm:py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-xl sm:text-2xl font-bold text-indigo-400">SAIBOU ABDOU SALAM</div>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">Co-fondateur de Fiablitech | Étudiant en BTS MCO</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl sm:text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github text-xl sm:text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl sm:text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl sm:text-2xl"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm sm:text-base">
+                <p>&copy; 2023 SAIBOU ABDOU SALAM. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Masquer le loader lorsque la page est complètement chargée
+        window.addEventListener('load', function() {
+            document.getElementById('loader').style.opacity = 0;
+            setTimeout(function() {
+                document.getElementById('loader').style.display = 'none';
+            }, 500);
+        });
+        
+        // Toggle menu mobile
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
+                
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Ferme le menu mobile après un clic
+                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Fermer le menu mobile quand on clique en dehors
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuToggle = document.getElementById('menu-toggle');
+            
+            if (!mobileMenu.contains(event.target) && event.target !== menuToggle && !menuToggle.contains(event.target)) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+        
+        // Chargement différé des scripts non-essentiels
+        function loadScript(src, callback) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.defer = true;
+            if (callback) script.onload = callback;
+            document.body.appendChild(script);
+        }
+        
+        // Chargement optimisé des images
+        document.addEventListener('DOMContentLoaded', () => {
+            // Utilisation de l'Intersection Observer pour le chargement lazy
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            // Remplacer le src avec l'attribut data-src
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.add('loaded');
+                                img.removeAttribute('data-src');
+                                observer.unobserve(img);
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+                
+                // Appliquer à toutes les images
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    // Ajouter un placeholder si pas déjà fait
+                    if (!img.src) {
+                        img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E';
+                    }
+                    img.classList.add('lazy-image');
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback pour navigateurs sans support d'Intersection Observer
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                });
+            }
+            
+            // Charger les animations uniquement après le contenu principal
+            setTimeout(() => {
+                loadScript('js/main.js');
+                
+                // Charger AOS après le contenu principal
+                setTimeout(() => {
+                    loadScript('https://unpkg.com/aos@next/dist/aos.js', function() {
+                        // Ajouter le CSS d'AOS
+                        const aosCSS = document.createElement('link');
+                        aosCSS.rel = 'stylesheet';
+                        aosCSS.href = 'https://unpkg.com/aos@next/dist/aos.css';
+                        document.head.appendChild(aosCSS);
+                        
+                        // Initialisation des animations AOS avec des paramètres optimisés
+                        AOS.init({
+                            duration: 800,
+                            once: true,
+                            disable: window.innerWidth < 768 // Désactiver sur mobile
+                        });
+                    });
+                }, 1000);
+            }, 200);
+        });
+    </script>
+</body>
+</html>

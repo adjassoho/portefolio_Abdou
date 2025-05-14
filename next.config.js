@@ -2,12 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Assurez-vous que l'App Router est activé (par défaut dans Next.js 13+)
-  experimental: {
-    appDir: true,
-  },
   // Configurez le répertoire de sortie pour Vercel
   distDir: '.next',
+  // Assurez-vous que les images peuvent être chargées depuis les sources externes
+  images: {
+    domains: ['github.com'],
+    unoptimized: true,
+  },
 }
 
 module.exports = nextConfig 
