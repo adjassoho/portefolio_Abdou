@@ -39,7 +39,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-gray-200 dark:border-gray-800">
+    <footer className="relative overflow-hidden border-t border-gray-200 dark:border-gray-800 bg-gradient-to-b from-white via-indigo-50 to-blue-50 dark:from-gray-900 dark:via-indigo-950/30 dark:to-blue-950/30">
+      {/* Texture overlay */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10 bg-[url('/grid.svg')] bg-repeat z-0 pointer-events-none"></div>
+      
       {/* Gradient Top Border */}
       <div className="h-1 w-full bg-gradient-to-r from-indigo-600 via-blue-500 to-indigo-400"></div>
       
@@ -96,7 +99,7 @@ const Footer = () => {
       </div>
       
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -114,9 +117,12 @@ const Footer = () => {
                   animation="gradient"
                 />
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Étudiant en BTS MCO en recherche de stage, passionné par le management commercial et la relation client.
-              </p>
+              <div className="max-w-lg">
+                <h2 className="text-lg font-bold mb-2 text-white">À propos de moi</h2>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Étudiant en Bachelor Supply Chain en recherche de stage, passionné par le management commercial et la relation client.
+                </p>
+              </div>
               <div className="flex space-x-4 mt-6">
                 <motion.a
                   href="https://github.com/"

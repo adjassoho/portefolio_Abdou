@@ -1,285 +1,368 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaPaperPlane, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
+import { useState, FormEvent } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+enum FormStatus {
+  Idle,
+  Submitting,
+  Success,
+  Error
+}
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
-  
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [focusedField, setFocusedField] = useState<string | null>(null);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-  
-  const handleFocus = (field: string) => {
-    setFocusedField(field);
-  };
-  
-  const handleBlur = () => {
-    setFocusedField(null);
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    
-    // Simulate form submission with a delay
-    setTimeout(() => {
-      // Simulate success or error based on email format (this is just for demo)
-      if (formData.email.includes('@') && formData.message.length > 10) {
-        setFormStatus('success');
-        // Clear form after successful submission
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        setFormStatus('error');
-      }
-    }, 1500);
-  };
-  
-  // Input field animation variants
-  const inputVariants = {
-    initial: { 
-      opacity: 0, 
-      y: 20 
-    },
-    animate: (i: number) => ({ 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        delay: 0.1 * i,
-        duration: 0.5
-      }
-    }),
-    focus: { 
-      scale: 1.02,
-      boxShadow: "0 4px 20px rgba(79, 70, 229, 0.15)",
-      borderColor: "#6366f1",
-      transition: { duration: 0.2 }
-    }
-  };
-  
-  // Form status animation variants
-  const statusVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: -20, 
-      height: 0 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      height: 'auto',
-      transition: { duration: 0.3 }
-    },
-    exit: { 
-      opacity: 0, 
-      y: -20, 
-      height: 0,
-      transition: { duration: 0.2 }
-    }
-  };
-  
-  // Button animation variants
-  const buttonVariants = {
-    idle: { 
-      scale: 1
-    },
-    submitting: { 
-      scale: 0.95
-    },
-    hover: { 
-      scale: 1.05,
-      boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.4)",
-      transition: { duration: 0.2 }
-    },
-    tap: { 
-      scale: 0.95,
-      transition: { duration: 0.1 }
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<FormStatus>(FormStatus.Idle);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const validateField = (name: string, value: string): string | undefined => {
+    switch (name) {
+      case 'name':
+        return value.trim() === '' ? 'Veuillez saisir votre nom' : undefined;
+      case 'email':
+        return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) 
+          ? 'Veuillez saisir une adresse email valide' 
+          : undefined;
+      case 'message':
+        return value.trim() === '' ? 'Veuillez saisir un message' : undefined;
+      default:
+        return undefined;
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (touched[name]) {
+      setErrors(prev => ({ 
+        ...prev, 
+        [name]: validateField(name, value) 
+      }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
+    setTouched(prev => ({ ...prev, [name]: true }));
+    setErrors(prev => ({ 
+      ...prev, 
+      [name]: validateField(name, value) 
+    }));
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+    let isValid = true;
+    
+    // Validate each field
+    Object.entries(formData).forEach(([key, value]) => {
+      const error = validateField(key, value);
+      if (error) {
+        newErrors[key as keyof FormErrors] = error;
+        isValid = false;
+      }
+    });
+    
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    
+    // Mark all fields as touched
+    const allTouched = Object.keys(formData).reduce((acc, key) => {
+      acc[key] = true;
+      return acc;
+    }, {} as Record<string, boolean>);
+    
+    setTouched(allTouched);
+    
+    // Validate form
+    if (!validateForm()) return;
+    
+    setStatus(FormStatus.Submitting);
+    
+    // Simulate form submission with a delay
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      // Simulate successful form submission
+      setStatus(FormStatus.Success);
+      setFormData({ name: '', email: '', message: '' });
+      setTouched({});
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setStatus(FormStatus.Idle);
+      }, 5000);
+    } catch (error) {
+      setStatus(FormStatus.Error);
+      setErrorMessage("Une erreur s'est produite. Veuillez réessayer plus tard.");
+      
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        setStatus(FormStatus.Idle);
+        setErrorMessage('');
+      }, 5000);
+    }
+  };
+
+  const inputClasses = (name: keyof FormData) => `
+    w-full p-3 border rounded-lg focus:outline-none transition-all duration-300
+    ${touched[name] && errors[name] 
+      ? 'border-red-300 bg-red-50 focus:ring-2 focus:ring-red-200' 
+      : 'border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200'}
+  `;
+
   return (
-    <div>
-      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Envoyez-moi un message</h3>
-      
-      {formStatus === 'success' && (
-        <motion.div
-          className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg text-green-700 dark:text-green-300 flex items-center"
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={statusVariants}
-        >
-          <FaCheck className="mr-2" />
-          <span>Votre message a été envoyé avec succès !</span>
-        </motion.div>
-      )}
-      
-      {formStatus === 'error' && (
-        <motion.div
-          className="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300 flex items-center"
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={statusVariants}
-        >
-          <FaExclamationTriangle className="mr-2" />
-          <span>Une erreur s'est produite. Veuillez vérifier vos informations et réessayer.</span>
-        </motion.div>
-      )}
-      
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <motion.div
-          custom={0}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={inputVariants}
-          animate={focusedField === 'name' ? 'focus' : ''}
-        >
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Nom
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            onFocus={() => handleFocus('name')}
-            onBlur={handleBlur}
-            required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-            placeholder="Votre nom"
-            disabled={formStatus === 'submitting'}
-          />
-        </motion.div>
+    <div className="grid md:grid-cols-5 gap-10">
+      <div className="md:col-span-2 space-y-6">
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">Contactez-moi</h3>
+        <p className="text-gray-600 mb-8">
+          N'hésitez pas à me contacter pour toute opportunité de stage ou question.
+        </p>
         
-        <motion.div
-          custom={1}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={inputVariants}
-          animate={focusedField === 'email' ? 'focus' : ''}
-        >
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={() => handleFocus('email')}
-            onBlur={handleBlur}
-            required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-            placeholder="votre@email.com"
-            disabled={formStatus === 'submitting'}
-          />
-        </motion.div>
-        
-        <motion.div
-          custom={2}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={inputVariants}
-          animate={focusedField === 'subject' ? 'focus' : ''}
-        >
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Sujet
-          </label>
-          <select
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            onFocus={() => handleFocus('subject')}
-            onBlur={handleBlur}
-            required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-            disabled={formStatus === 'submitting'}
+        <div className="space-y-6">
+          <motion.div 
+            className="flex items-start gap-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            <option value="">Sélectionner un sujet</option>
-            <option value="stage">Proposition de stage</option>
-            <option value="info">Demande d'information</option>
-            <option value="other">Autre</option>
-          </select>
-        </motion.div>
-        
-        <motion.div
-          custom={3}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={inputVariants}
-          animate={focusedField === 'message' ? 'focus' : ''}
-        >
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            onFocus={() => handleFocus('message')}
-            onBlur={handleBlur}
-            required
-            rows={5}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none"
-            placeholder="Votre message..."
-            disabled={formStatus === 'submitting'}
-          />
-        </motion.div>
-        
-        <motion.button
-          type="submit"
-          className="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-medium rounded-lg shadow-md flex items-center justify-center space-x-2 relative overflow-hidden group"
-          initial="idle"
-          animate={formStatus === 'submitting' ? 'submitting' : 'idle'}
-          whileHover="hover"
-          whileTap="tap"
-          variants={buttonVariants}
-          disabled={formStatus === 'submitting'}
-        >
-          <span className="absolute inset-0 w-0 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-700 group-hover:w-full"></span>
+            <div className="rounded-full bg-blue-100 p-3 text-blue-600">
+              <FaEnvelope size={20} />
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-800">Email</h4>
+              <a 
+                href="mailto:abdousalam.saibou@gmail.com" 
+                className="text-blue-600 hover:underline transition-all"
+              >
+                abdousalam.saibou@gmail.com
+              </a>
+            </div>
+          </motion.div>
           
-          <span className="relative z-10 flex items-center">
-            {formStatus === 'submitting' ? (
-              <>
-                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <span>Envoi en cours...</span>
-              </>
+          <motion.div 
+            className="flex items-start gap-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-full bg-green-100 p-3 text-green-600">
+              <FaPhone size={20} />
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-800">Téléphone</h4>
+              <a 
+                href="tel:+33767438781" 
+                className="text-blue-600 hover:underline transition-all"
+              >
+                +33 7 67 43 87 81
+              </a>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className="flex items-start gap-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className="rounded-full bg-amber-100 p-3 text-amber-600">
+              <FaMapMarkerAlt size={20} />
+            </div>
+            <div>
+              <h4 className="font-medium text-gray-800">Localisation</h4>
+              <p className="text-gray-600">Rouen, France</p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      
+      <div className="md:col-span-3">
+        <motion.div
+          className="bg-white rounded-xl shadow-lg p-6 md:p-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <AnimatePresence mode="wait">
+            {status === FormStatus.Success ? (
+              <motion.div
+                key="success"
+                className="flex flex-col items-center justify-center py-10 text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-16 h-16 mb-4 text-green-500 flex items-center justify-center">
+                  <FaCheckCircle size={56} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Message envoyé !</h3>
+                <p className="text-gray-600">
+                  Merci pour votre message. Je vous répondrai dans les plus brefs délais.
+                </p>
+              </motion.div>
+            ) : status === FormStatus.Error ? (
+              <motion.div
+                key="error"
+                className="flex flex-col items-center justify-center py-10 text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-16 h-16 mb-4 text-red-500 flex items-center justify-center">
+                  <FaExclamationCircle size={56} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Une erreur s'est produite</h3>
+                <p className="text-gray-600">{errorMessage}</p>
+              </motion.div>
             ) : (
-              <>
-                <FaPaperPlane className="mr-2" />
-                <span>Envoyer</span>
-              </>
+              <motion.form 
+                key="form"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Nom
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Votre nom"
+                    className={inputClasses('name')}
+                  />
+                  {touched.name && errors.name && (
+                    <motion.p 
+                      className="mt-1 text-sm text-red-600"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.name}
+                    </motion.p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="votre.email@exemple.com"
+                    className={inputClasses('email')}
+                  />
+                  {touched.email && errors.email && (
+                    <motion.p 
+                      className="mt-1 text-sm text-red-600"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    placeholder="Votre message..."
+                    rows={5}
+                    className={inputClasses('message')}
+                  />
+                  {touched.message && errors.message && (
+                    <motion.p 
+                      className="mt-1 text-sm text-red-600"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {errors.message}
+                    </motion.p>
+                  )}
+                </div>
+                
+                <motion.button
+                  type="submit"
+                  disabled={status === FormStatus.Submitting}
+                  className={`
+                    w-full py-3 px-4 rounded-lg text-white font-medium flex items-center justify-center gap-2
+                    transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 
+                    ${status === FormStatus.Submitting 
+                      ? 'bg-blue-400 cursor-wait' 
+                      : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'}
+                  `}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {status === FormStatus.Submitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <FaPaperPlane />
+                      Envoyer le message
+                    </>
+                  )}
+                </motion.button>
+              </motion.form>
             )}
-          </span>
-        </motion.button>
-      </form>
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,21 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Poppins } from 'next/font/google';
+import ThemeProvider from '@/components/ThemeProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+// Configuration des polices
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
+const poppins = Poppins({ 
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   title: 'SAIBOU ABDOU SALAM | Portfolio',
-  description: 'Étudiant en BTS MCO en recherche de stage',
-  keywords: 'portfolio, stage, BTS MCO, management commercial, Rouen',
+  description: 'Étudiant en Bachelor Supply Chain en recherche de stage',
+  keywords: 'portfolio, stage, Bachelor Supply Chain, achats, logistique, Rouen',
 };
 
 export default function RootLayout({
@@ -17,8 +25,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-white`}>
+        <ThemeProvider>
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-grow">
         {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
