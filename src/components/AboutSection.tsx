@@ -49,7 +49,7 @@ const AboutSection = () => {
         />
         
         <div className="grid md:grid-cols-12 gap-8 items-center mt-10">
-          {/* Profile Image Column */}
+          {/* Profile Image Column - Simplifié pour mobile */}
           <motion.div 
             className="md:col-span-5 flex justify-center"
             initial={{ opacity: 0, x: -50 }}
@@ -58,9 +58,9 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <div className="relative">
-              {/* Main profile image */}
+              {/* Main profile image - avec bordure améliorée */}
               <motion.div 
-                className="relative h-72 w-72 sm:h-96 sm:w-96 rounded-2xl overflow-hidden border-4 border-white shadow-xl z-10"
+                className="relative h-72 w-72 sm:h-96 sm:w-96 rounded-2xl overflow-hidden border-4 border-white shadow-xl"
                 whileHover={{ 
                   scale: 1.02,
                   boxShadow: "0 25px 50px -12px rgba(79, 70, 229, 0.25)"
@@ -97,46 +97,8 @@ const AboutSection = () => {
                 </motion.div>
               </motion.div>
               
-              {/* Background decorative element */}
-              <div className="absolute -bottom-6 -right-6 h-48 w-48 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl -z-10" />
-              
-              {/* Floating badges */}
-              <motion.div 
-                className="absolute -top-4 -left-4 bg-white rounded-full shadow-lg px-4 py-2 flex items-center space-x-2"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.5)" }}
-              >
-                <FaGraduationCap className="text-blue-600" />
-                <span className="font-medium text-gray-800">Bachelor Supply Chain</span>
-              </motion.div>
-              
-              <motion.div 
-                className="absolute -bottom-4 left-12 bg-white rounded-full shadow-lg px-4 py-2 flex items-center space-x-2"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(239, 68, 68, 0.5)" }}
-              >
-                <FaMapMarkerAlt className="text-red-500" />
-                <span className="font-medium text-gray-800">Rouen, France</span>
-              </motion.div>
-              
-              {/* New Fiabilitech badge */}
-              <motion.div 
-                className="absolute -top-2 -right-2 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full shadow-lg px-4 py-2 flex items-center space-x-2"
-                initial={{ opacity: 0, y: -20, scale: 0.8 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.7, duration: 0.5 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.5)" }}
-              >
-                <FaCode className="text-white" />
-                <span className="font-medium">Fiabilitech</span>
-              </motion.div>
+              {/* Ajout d'un halo lumineux autour de l'image au lieu du bloc décoratif */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl blur-md -z-10 opacity-50" />
             </div>
           </motion.div>
           
@@ -151,9 +113,9 @@ const AboutSection = () => {
             <div className="space-y-6">
               <div>
                 <h2 className="text-4xl font-bold text-gray-800 mb-2">SAIBOU ABDOU SALAM</h2>
-                <div className="flex items-center flex-wrap">
+                <div className="flex flex-wrap items-center gap-y-2">
                   <h3 className="text-xl text-blue-600 font-medium">Étudiant en Bachelor Supply Chain</h3>
-                  <span className="mx-3 text-gray-400">|</span>
+                  <span className="mx-3 text-gray-400 hidden sm:inline">|</span>
                   <h3 className="text-xl text-indigo-600 font-medium">Co-Fondateur Fiabilitech</h3>
                 </div>
               </div>
@@ -278,7 +240,7 @@ const AboutSection = () => {
                 </FloatingCard>
               </div>
               
-              <div className="mt-8 flex justify-start space-x-4">
+              <div className="mt-8 flex flex-wrap justify-start gap-4">
                 <motion.a 
                   href="#" 
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium rounded-full hover:from-indigo-700 hover:to-blue-700 transition-all shadow-md hover:shadow-lg"
@@ -304,7 +266,7 @@ const AboutSection = () => {
         
         {/* Interests section with enhanced styling */}
         <motion.div 
-          className="mt-16 bg-white p-8 rounded-2xl shadow-lg relative overflow-hidden"
+          className="mt-16 bg-white p-6 sm:p-8 rounded-2xl shadow-lg relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -316,7 +278,7 @@ const AboutSection = () => {
           
           <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center relative z-10">Centres d'intérêt</h3>
           
-          <div className="flex flex-wrap justify-center gap-4 relative z-10">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 relative z-10">
             {[
               { name: "Sport", icon: "🏃‍♂️", color: "bg-green-100 text-green-800 border-green-300" },
               { name: "Lecture", icon: "📚", color: "bg-blue-100 text-blue-800 border-blue-300" },
@@ -329,7 +291,7 @@ const AboutSection = () => {
             ].map((interest, index) => (
               <motion.div 
                 key={interest.name}
-                className={`rounded-full px-4 py-2 border ${interest.color} flex items-center gap-2 cursor-pointer shadow-sm hover:shadow-md transition-shadow`}
+                className={`rounded-full px-3 sm:px-4 py-1.5 sm:py-2 border ${interest.color} flex items-center gap-2 cursor-pointer shadow-sm hover:shadow-md transition-shadow`}
                 whileHover={{ scale: 1.1, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -342,8 +304,8 @@ const AboutSection = () => {
                 }}
                 viewport={{ once: true }}
               >
-                <span className="text-xl">{interest.icon}</span>
-                <span className="font-medium">{interest.name}</span>
+                <span className="text-base sm:text-xl">{interest.icon}</span>
+                <span className="font-medium text-sm sm:text-base">{interest.name}</span>
               </motion.div>
             ))}
           </div>
@@ -351,7 +313,7 @@ const AboutSection = () => {
         
         {/* Quote section */}
         <motion.div
-          className="mt-16 max-w-3xl mx-auto bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden"
+          className="mt-16 max-w-3xl mx-auto bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -372,11 +334,11 @@ const AboutSection = () => {
             }}
           />
           
-          <blockquote className="relative py-6 px-8 text-center z-10">
-            <svg className="absolute top-0 left-0 h-16 w-16 text-white/10 -z-10 transform -translate-x-6 -translate-y-6" fill="currentColor" viewBox="0 0 32 32">
+          <blockquote className="relative py-4 sm:py-6 px-4 sm:px-8 text-center z-10">
+            <svg className="absolute top-0 left-0 h-12 sm:h-16 w-12 sm:w-16 text-white/10 -z-10 transform -translate-x-6 -translate-y-6" fill="currentColor" viewBox="0 0 32 32">
               <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
             </svg>
-            <p className="text-xl italic leading-relaxed mb-4">
+            <p className="text-lg sm:text-xl italic leading-relaxed mb-4">
               "Ma passion pour la technologie et le commerce digital m'a conduit à co-fonder Fiabilitech, tout en poursuivant mes études en Bachelor Supply Chain. Cette double expérience me permet d'appréhender les projets avec une vision à la fois technique et commerciale."
             </p>
             <footer className="font-semibold">- SAIBOU ABDOU SALAM</footer>

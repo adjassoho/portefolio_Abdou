@@ -98,16 +98,31 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         className="container mx-auto px-4 z-10"
         style={{ y, opacity }}
       >
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
-          {/* Left side - Text content */}
-          <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <div className="max-w-lg">
+        {/* Structure de mise en page révisée pour mobile avec ordre ajusté */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-10 lg:py-0 lg:gap-16">
+          {/* Partie visuelle - priorité sur mobile */}
+          <div className="w-full lg:w-1/2 order-1 mb-8 lg:mb-0 lg:order-2">
+            <div className="flex justify-center">
+              <ProfileCardEnhanced 
+                name="SAIBOU ABDOU SALAM"
+                role="Co-Fondateur de Fiabilitech"
+                imageSrc="/images/profil.jpg"
+                currentPosition="Alternance Immobilier"
+                currentCompany="Agence de la gare"
+                currentPeriod="2024-2025"
+              />
+            </div>
+          </div>
+          
+          {/* Partie texte - meilleur espacement pour mobile */}
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 px-4">
+            <div className="max-w-lg mx-auto lg:mx-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 font-medium text-sm border border-indigo-100 dark:border-indigo-700/30">
+                <div className="inline-block px-3 py-1.5 mb-4 sm:mb-6 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 font-medium text-xs sm:text-sm border border-indigo-100 dark:border-indigo-700/30">
                   Recherche d'alternance 2025-2026 • Bachelor Achats et Supply Chain
                 </div>
               </motion.div>
@@ -116,14 +131,14 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="mb-8"
+                className="mb-4 sm:mb-8"
               >
-                <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-gray-800 dark:text-white leading-none tracking-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white leading-none tracking-tight">
                   <span className="block mb-1">SAIBOU</span>
                   <span className="block">ABDOU SALAM</span>
                 </h1>
-                <div className="h-1.5 w-24 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full mb-3"></div>
-                <h2 className="text-2xl sm:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold">
+                <div className="h-1.5 w-24 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full mb-2 sm:mb-3"></div>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold">
                   Co-Fondateur de Fiabilitech
                 </h2>
               </motion.div>
@@ -132,44 +147,44 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
+                className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed"
               >
                 Passionné par le digital et l'entrepreneuriat, j'associe compétences en développement web et expertise commerciale. Actuellement en alternance dans l'immobilier, je recherche de nouvelles opportunités dans les achats et la supply chain.
               </motion.p>
               
-              <div className="flex flex-wrap gap-4 mb-10">
+              <div className="flex flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-10">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
                 >
-                  <FaBriefcase className="text-indigo-600 dark:text-indigo-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Entrepreneur</span>
+                  <FaBriefcase className="text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm" />
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Entrepreneur</span>
                 </motion.div>
                 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
-                  className="flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
                 >
-                  <FaCode className="text-indigo-600 dark:text-indigo-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Développement Web</span>
+                  <FaCode className="text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm" />
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Développement Web</span>
                 </motion.div>
                 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 }}
-                  className="flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
                 >
-                  <FaGraduationCap className="text-indigo-600 dark:text-indigo-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Bachelor Supply Chain</span>
+                  <FaGraduationCap className="text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm" />
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Bachelor Supply Chain</span>
                 </motion.div>
               </div>
               
-              <div className="flex gap-6 mb-12">
+              <div className="flex gap-4 sm:gap-6 mb-8 sm:mb-12">
                 <motion.a
                   href="https://instagram.com/"
                   target="_blank"
@@ -179,10 +194,10 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 0.9 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
                   aria-label="Instagram"
                 >
-                  <FaInstagram size={22} className="text-gradient-instagram" />
+                  <FaInstagram size={18} className="text-gradient-instagram" />
                 </motion.a>
                 
                 <motion.a
@@ -194,10 +209,10 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 1.0 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
                   aria-label="LinkedIn"
                 >
-                  <FaLinkedin size={22} />
+                  <FaLinkedin size={18} />
                 </motion.a>
                 
                 <motion.a
@@ -207,10 +222,10 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 1.1 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
                   aria-label="Email"
                 >
-                  <FaEnvelope size={22} />
+                  <FaEnvelope size={18} />
                 </motion.a>
               </div>
               
@@ -224,27 +239,15 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   boxShadow: "0 20px 30px -10px rgba(79, 70, 229, 0.4)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white rounded-full font-medium shadow-lg inline-flex items-center space-x-3 relative overflow-hidden group"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white rounded-full font-medium shadow-lg inline-flex items-center space-x-2 sm:space-x-3 relative overflow-hidden group"
               >
-                <span className="z-10">Explorer mon profil</span>
-                <FaArrowDown className="ml-2 z-10 group-hover:animate-bounce" />
+                <span className="z-10 text-sm sm:text-base">Explorer mon profil</span>
+                <FaArrowDown className="ml-1 sm:ml-2 z-10 group-hover:animate-bounce text-sm sm:text-base" />
                 
                 {/* Button glow effect */}
                 <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-600 to-blue-500 opacity-0 group-hover:opacity-70 blur-xl group-hover:blur-2xl transition-all duration-300"></div>
               </motion.button>
             </div>
-          </div>
-          
-          {/* Right side - Visual element */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2">
-            <ProfileCardEnhanced 
-              name="SAIBOU ABDOU SALAM"
-              role="Co-Fondateur de Fiabilitech"
-              imageSrc="/images/profil.jpg"
-              currentPosition="Alternance Immobilier"
-              currentCompany="Agence de la gare"
-              currentPeriod="2024-2025"
-            />
           </div>
         </div>
       </motion.div>
@@ -256,12 +259,12 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.8 }}
       >
-        <span className="text-sm text-gray-600 dark:text-gray-400 mb-2">Découvrir</span>
+        <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2">Découvrir</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <BsChevronDoubleDown className="text-indigo-600 dark:text-indigo-400 text-xl" />
+          <BsChevronDoubleDown className="text-indigo-600 dark:text-indigo-400 text-base sm:text-xl" />
         </motion.div>
       </motion.div>
     </div>

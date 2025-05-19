@@ -30,16 +30,16 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
         transition={{ duration: 1 }}
         className="relative"
       >
-        {/* Effets lumineux subtils */}
-        <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-3xl z-0"></div>
-        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-indigo-400/30 dark:bg-indigo-600/30 rounded-full blur-3xl z-0"></div>
+        {/* Effets lumineux subtils - repositionnés pour petits écrans */}
+        <div className="absolute -top-16 -right-16 w-32 h-32 sm:w-48 sm:h-48 bg-blue-400/30 dark:bg-blue-600/30 rounded-full blur-3xl z-0"></div>
+        <div className="absolute -bottom-16 -left-16 w-32 h-32 sm:w-48 sm:h-48 bg-indigo-400/30 dark:bg-indigo-600/30 rounded-full blur-3xl z-0"></div>
 
-        {/* Cadre principal amélioré */}
+        {/* Cadre principal amélioré - ajusté pour mobile */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(79,70,229,0.5)] w-[300px] h-[380px] sm:w-[380px] sm:h-[460px] z-10"
+          className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(79,70,229,0.5)] w-[280px] h-[350px] sm:w-[380px] sm:h-[460px] z-10"
         >
           {/* Fond décoratif avec meilleure visibilité */}
           <div className="absolute inset-0 z-0 opacity-30">
@@ -79,7 +79,7 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
                   fill
                   className="object-cover object-top"
                   priority
-                  sizes="(max-width: 768px) 300px, 380px"
+                  sizes="(max-width: 768px) 280px, 380px"
                   onError={(e: any) => {
                     e.target.onerror = null;
                     e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=4f46e5&color=fff&size=300`;
@@ -126,20 +126,20 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
             </div>
           </div>
           
-          {/* Informations en bas de l'image */}
+          {/* Informations en bas de l'image - avec z-index augmenté pour passer au-dessus du badge d'expérience */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
-            className="absolute left-0 right-0 bottom-0 z-20 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-4 border-t border-gray-100 dark:border-gray-700"
+            className="absolute left-0 right-0 bottom-0 z-30 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md p-4 border-t border-gray-100 dark:border-gray-700"
           >
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">{name}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-300">{role}</p>
           </motion.div>
 
-          {/* Badge année */}
+          {/* Badge année - rendu conditionnel pour mobile */}
           <motion.div
-            className="absolute top-4 right-4 z-30 bg-indigo-600 text-white rounded-full h-12 w-12 flex items-center justify-center shadow-lg"
+            className="absolute top-4 right-4 z-30 bg-indigo-600 text-white rounded-full h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shadow-lg"
             initial={{ scale: 0, rotate: -15 }}
             animate={{ 
               scale: 1, 
@@ -157,13 +157,14 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
               }
             }}
           >
-            <span className="font-bold text-sm">2025</span>
+            <span className="font-bold text-xs sm:text-sm">2025</span>
           </motion.div>
         </motion.div>
 
-        {/* Badges flottants repositionnés */}
+        {/* Badges flottants repositionnés - adaptés pour mobile */}
+        {/* Masqués sur très petits écrans, visibles à partir de sm */}
         <motion.div 
-          className="absolute -top-4 -left-16 z-30 bg-white dark:bg-gray-800 rounded-xl p-3 shadow-lg border border-indigo-100 dark:border-indigo-800/30"
+          className="hidden sm:flex absolute -top-4 -left-10 sm:-left-16 z-30 bg-white dark:bg-gray-800 rounded-xl p-2.5 sm:p-3 shadow-lg border border-indigo-100 dark:border-indigo-800/30"
           initial={{ opacity: 0, x: 20 }}
           animate={{ 
             opacity: 1, 
@@ -181,15 +182,15 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
           }}
         >
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
-              <FaGraduationCap className="text-indigo-600 dark:text-indigo-400" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
+              <FaGraduationCap className="text-indigo-600 dark:text-indigo-400 text-sm sm:text-base" />
             </div>
-            <span className="font-bold text-indigo-600 dark:text-indigo-400">Supply Chain</span>
+            <span className="font-bold text-sm sm:text-base text-indigo-600 dark:text-indigo-400">Supply Chain</span>
           </div>
         </motion.div>
 
         <motion.div 
-          className="absolute -bottom-4 -left-14 z-30 bg-white dark:bg-gray-800 rounded-xl p-3 shadow-lg border border-blue-100 dark:border-blue-800/30"
+          className="hidden sm:flex absolute -bottom-4 -left-8 sm:-left-14 z-30 bg-white dark:bg-gray-800 rounded-xl p-2.5 sm:p-3 shadow-lg border border-blue-100 dark:border-blue-800/30"
           initial={{ opacity: 0, x: 20 }}
           animate={{ 
             opacity: 1, 
@@ -207,15 +208,15 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
           }}
         >
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
-              <FaCode className="text-blue-600 dark:text-blue-400" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+              <FaCode className="text-blue-600 dark:text-blue-400 text-sm sm:text-base" />
             </div>
-            <span className="font-bold text-blue-600 dark:text-blue-400">Web</span>
+            <span className="font-bold text-sm sm:text-base text-blue-600 dark:text-blue-400">Web</span>
           </div>
         </motion.div>
 
         <motion.div 
-          className="absolute top-1/3 -right-16 z-30 bg-white dark:bg-gray-800 rounded-xl p-3 shadow-lg border border-purple-100 dark:border-purple-800/30"
+          className="hidden sm:flex absolute top-1/3 -right-10 sm:-right-16 z-30 bg-white dark:bg-gray-800 rounded-xl p-2.5 sm:p-3 shadow-lg border border-purple-100 dark:border-purple-800/30"
           initial={{ opacity: 0, x: -20 }}
           animate={{ 
             opacity: 1, 
@@ -233,27 +234,27 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
           }}
         >
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center">
-              <FaCode className="text-purple-600 dark:text-purple-400" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center">
+              <FaCode className="text-purple-600 dark:text-purple-400 text-sm sm:text-base" />
             </div>
-            <span className="font-bold text-purple-600 dark:text-purple-400">Pro</span>
+            <span className="font-bold text-sm sm:text-base text-purple-600 dark:text-purple-400">Pro</span>
           </div>
         </motion.div>
 
-        {/* Badge d'expérience */}
+        {/* Badge d'expérience repositionné pour ne plus superposer le nom et le rôle */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 1.8, duration: 0.7 }}
-          className="absolute -bottom-10 right-0 sm:-bottom-12 sm:right-0 bg-white dark:bg-gray-800 shadow-xl rounded-xl p-4 max-w-xs z-30 backdrop-blur-sm border border-gray-100 dark:border-gray-700"
+          className="absolute bottom-16 -right-28 sm:bottom-20 sm:-right-36 bg-white dark:bg-gray-800 shadow-xl rounded-xl p-3 sm:p-4 max-w-[180px] sm:max-w-xs z-20 backdrop-blur-sm border border-gray-100 dark:border-gray-700"
         >
-          <div className="flex items-start gap-3">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-              <FaBriefcase className="text-white text-xl" />
+          <div className="flex items-start gap-2 sm:gap-3">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+              <FaBriefcase className="text-white text-base sm:text-xl" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 dark:text-white">{currentPosition}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{currentCompany} • {currentPeriod}</p>
+              <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white">{currentPosition}</h3>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{currentCompany} • {currentPeriod}</p>
             </div>
           </div>
         </motion.div>
