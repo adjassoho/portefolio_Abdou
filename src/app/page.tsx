@@ -35,6 +35,23 @@ export default function Home() {
   // Timeline items pour la section expérience
   const experienceItems = [
     {
+      id: "agencegare",
+      title: "Agence immobilière « Agence de la gare »",
+      subtitle: "Alternance Immobilier",
+      location: "Rouen",
+      date: "2024-2025",
+      content: [
+        "Accueil et orientation des clients : premier point de contact à l'entrée de l'agence",
+        "Organisation de visites guidées : accompagnement des clients lors des visites de biens",
+        "Estimation de biens immobiliers : participation à l'évaluation de la valeur des propriétés",
+        "Gestion administrative : suivi et mise à jour des dossiers clients",
+        "Communication digitale : gestion des réseaux sociaux de l'agence",
+        "Prospection commerciale : recherche de nouveaux clients et prise de mandats",
+        "Valorisation des biens : mise en valeur des annonces en vitrine"
+      ],
+      color: "border-indigo-600",
+    },
+    {
       id: "uexpress",
       title: "U Express",
       subtitle: "Stage de 8 semaines",

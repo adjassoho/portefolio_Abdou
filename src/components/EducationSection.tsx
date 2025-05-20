@@ -28,9 +28,9 @@ const EducationSection = () => {
     {
       id: 'bts-mco',
       title: 'BTS Management Commercial Opérationnel',
-      institution: 'Lycée Gustave Flaubert',
+      institution: 'Institut Les TOURELLES',
       location: 'Rouen',
-      period: '2022 - 2024',
+      period: '2023 - 2025',
       description: 'Formation en gestion d\'unité commerciale, management d\'équipe, gestion de la relation client, et animation et dynamisation de l\'offre commerciale.',
       skills: [
         'Développement de la relation client',
@@ -45,9 +45,9 @@ const EducationSection = () => {
     },
     {
       id: 'bac',
-      title: 'Baccalauréat STMG',
-      institution: 'Lycée Val de Seine',
-      location: 'Le Grand Quevilly',
+      title: 'Bac Professionnel Gestion Administrative',
+      institution: 'Institut Les TOURELLES',
+      location: 'Rouen',
       period: '2019 - 2022',
       description: 'Baccalauréat Sciences et Technologies du Management et de la Gestion, spécialité Ressources Humaines et Communication.',
       skills: [

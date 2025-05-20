@@ -185,7 +185,7 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center">
               <FaGraduationCap className="text-indigo-600 dark:text-indigo-400 text-sm sm:text-base" />
             </div>
-            <span className="font-bold text-sm sm:text-base text-indigo-600 dark:text-indigo-400">Supply Chain</span>
+            <span className="font-bold text-sm sm:text-base text-indigo-600 dark:text-indigo-400">ACHATS ET SUPPLY CHAIN</span>
           </div>
         </motion.div>
 

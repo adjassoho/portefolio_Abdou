@@ -159,10 +159,10 @@ const ContactForm = () => {
             <div>
               <h4 className="font-medium text-gray-800">Email</h4>
               <a 
-                href="mailto:abdousalam.saibou@gmail.com" 
+                href="mailto:salamsaibou2002@gmail.com" 
                 className="text-blue-600 hover:underline transition-all"
               >
-                abdousalam.saibou@gmail.com
+                salamsaibou2002@gmail.com
               </a>
             </div>
           </motion.div>
