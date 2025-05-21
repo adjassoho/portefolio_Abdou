@@ -195,13 +195,13 @@ const Footer = () => {
                   <div className="mt-1 flex-shrink-0 text-indigo-600 dark:text-indigo-400">
                     <FaMapMarkerAlt />
                   </div>
-                  <span className="text-gray-600 dark:text-gray-300">22 Rue saint Maur 76000 Rouen</span>
+                  <span className="text-gray-600 dark:text-gray-300">7 rue Saint André 76000 Rouen</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <div className="flex-shrink-0 text-indigo-600 dark:text-indigo-400">
                     <FaPhone />
                   </div>
-                  <span className="text-gray-600 dark:text-gray-300">06 51 10 43 34</span>
+                  <span className="text-gray-600 dark:text-gray-300">+33 0651104334</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <div className="flex-shrink-0 text-indigo-600 dark:text-indigo-400">

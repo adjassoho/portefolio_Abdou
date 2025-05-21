@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaBriefcase, FaCode, FaFileAlt } from 'react-icons/fa';
+import { FaGraduationCap, FaBriefcase, FaCode, FaFileAlt, FaGlobe, FaShoppingCart, FaHome, FaTshirt } from 'react-icons/fa';
 import FloatingCard from './FloatingCard';
 import SectionTitle from './SectionTitle';
 
@@ -11,8 +11,9 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
-  type: 'academic' | 'professional' | 'personal' | 'certification';
+  type: 'web' | 'ecommerce' | 'immobilier';
   imageUrl?: string;
+  website?: string;
 }
 
 const PortfolioSection = () => {
@@ -21,42 +22,30 @@ const PortfolioSection = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Études de marché - U Express",
-      description: "Analyse approfondie du marché local pour identifier les opportunités et améliorer les offres commerciales",
-      tags: ["Recherche", "Analyse de données", "Marketing"],
-      type: "professional",
-      imageUrl: "/images/supply-chain-background.jpg"
+      title: "DIM",
+      description: "Nous avons développé une boutique en ligne complète pour DIM, une marque emblématique de lingerie française qui souhaitait optimiser son expérience de vente en ligne. Notre approche a combiné un design élégant et moderne reflétant l'identité premium de la marque avec une expérience utilisateur soigneusement optimisée pour maximiser les conversions.",
+      tags: ["E-commerce", "Responsive", "UX/UI", "Gestion de stock", "Click & Collect"],
+      type: "ecommerce",
+      imageUrl: "https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=DIM+E-commerce",
+      website: "https://www.dim.com/"
     },
     {
       id: 2,
-      title: "Gestion documentaire - Les TOURELLES",
-      description: "Optimisation du système de classification et de gestion documentaire de la bibliothèque",
-      tags: ["Organisation", "Gestion", "Documentation"],
-      type: "professional",
-      imageUrl: "/images/fiablitech-background.jpg"
+      title: "By G2S Immobilier",
+      description: "By G2S Immobilier, une agence immobilière basée à Bondy Paris, souhaitait développer une présence en ligne reflétant son expertise et permettant de présenter son portefeuille de biens. Notre équipe a conçu un site web élégant et fonctionnel mettant en valeur les propriétés disponibles et facilitant le contact avec les clients potentiels.",
+      tags: ["Immobilier", "Recherche avancée", "Galerie photo", "Responsive"],
+      type: "immobilier",
+      imageUrl: "https://via.placeholder.com/800x400/8B5CF6/FFFFFF?text=G2S+Immobilier",
+      website: "https://www.byg2simmobilier.fr/"
     },
     {
       id: 3,
-      title: "Certification commerciale",
-      description: "Obtention du certificat en techniques commerciales avancées",
-      tags: ["Vente", "Négociation", "Certifications"],
-      type: "certification",
-      imageUrl: "/images/certificates/certificate-commercial.jpg"
-    },
-    {
-      id: 4,
-      title: "Projet Bachelor Supply Chain",
-      description: "Développement d'une stratégie omnicanale pour une enseigne locale",
-      tags: ["Stratégie", "Commerce", "Digital"],
-      type: "academic"
-    },
-    {
-      id: 5,
-      title: "Certification PIX",
-      description: "Validation des compétences numériques via la plateforme PIX",
-      tags: ["Numérique", "Compétences", "Certifications"],
-      type: "certification",
-      imageUrl: "/images/certificates/certificate-pix.jpg"
+      title: "Maxi Meubles",
+      description: "Maxi Meubles souhaitait lancer une boutique en ligne pour commercialiser leur gamme de mobilier design à prix abordable. Notre équipe a conçu une plateforme e-commerce complète, mettant en valeur leur catalogue de produits et optimisant l'expérience d'achat pour maximiser les conversions.",
+      tags: ["E-commerce", "Mobilier", "UX/UI", "Catalogue produit", "Responsive"],
+      type: "ecommerce",
+      imageUrl: "https://via.placeholder.com/800x400/10B981/FFFFFF?text=Maxi+Meubles",
+      website: "https://www.maxi-meubles.fr/"
     }
   ];
 
@@ -86,20 +75,18 @@ const PortfolioSection = () => {
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'academic': return <FaGraduationCap className="text-blue-600" />;
-      case 'professional': return <FaBriefcase className="text-green-600" />;
-      case 'personal': return <FaCode className="text-purple-600" />;
-      case 'certification': return <FaFileAlt className="text-amber-600" />;
+      case 'web': return <FaGlobe className="text-blue-600" />;
+      case 'ecommerce': return <FaShoppingCart className="text-green-600" />;
+      case 'immobilier': return <FaHome className="text-purple-600" />;
       default: return null;
     }
   };
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'academic': return 'bg-blue-100 text-blue-800 border-blue-300';
-      case 'professional': return 'bg-green-100 text-green-800 border-green-300';
-      case 'personal': return 'bg-purple-100 text-purple-800 border-purple-300';
-      case 'certification': return 'bg-amber-100 text-amber-800 border-amber-300';
+      case 'web': return 'bg-blue-100 text-blue-800 border-blue-300';
+      case 'ecommerce': return 'bg-green-100 text-green-800 border-green-300';
+      case 'immobilier': return 'bg-purple-100 text-purple-800 border-purple-300';
       default: return 'bg-gray-100 text-gray-800 border-gray-300';
     }
   };
@@ -110,7 +97,7 @@ const PortfolioSection = () => {
         <SectionTitle
           title="Portfolio"
           subtitle="Projets et réalisations"
-          description="Découvrez mes projets académiques, professionnels et certifications"
+          description="Découvrez les sites web développés par Fiablitech"
         />
 
         <div className="flex flex-wrap justify-center gap-4 mb-10">
@@ -124,31 +111,31 @@ const PortfolioSection = () => {
             Tous
           </button>
           <button
-            onClick={() => setFilter('academic')}
+            onClick={() => setFilter('web')}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${filter === 'academic' 
+              ${filter === 'web' 
                 ? 'bg-blue-600 text-white shadow-md' 
                 : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
           >
-            <FaGraduationCap /> Académiques
+            <FaGlobe /> Sites web
           </button>
           <button
-            onClick={() => setFilter('professional')}
+            onClick={() => setFilter('ecommerce')}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${filter === 'professional' 
+              ${filter === 'ecommerce' 
                 ? 'bg-green-600 text-white shadow-md' 
                 : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
           >
-            <FaBriefcase /> Professionnels
+            <FaShoppingCart /> E-Commerce
           </button>
           <button
-            onClick={() => setFilter('certification')}
+            onClick={() => setFilter('immobilier')}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${filter === 'certification' 
-                ? 'bg-amber-600 text-white shadow-md' 
+              ${filter === 'immobilier' 
+                ? 'bg-purple-600 text-white shadow-md' 
                 : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
           >
-            <FaFileAlt /> Certifications
+            <FaHome /> Immobilier
           </button>
         </div>
 
@@ -167,16 +154,14 @@ const PortfolioSection = () => {
                 hoverScale={1.03} 
                 rotateIntensity={0.8}
                 borderColor={
-                  project.type === 'academic' ? 'border-blue-600' :
-                  project.type === 'professional' ? 'border-green-600' :
-                  project.type === 'personal' ? 'border-purple-600' :
-                  'border-amber-600'
+                  project.type === 'web' ? 'border-blue-600' :
+                  project.type === 'ecommerce' ? 'border-green-600' :
+                  'border-purple-600'
                 }
                 glowColor={
-                  project.type === 'academic' ? 'rgba(59, 130, 246, 0.2)' :
-                  project.type === 'professional' ? 'rgba(22, 163, 74, 0.2)' :
-                  project.type === 'personal' ? 'rgba(147, 51, 234, 0.2)' :
-                  'rgba(217, 119, 6, 0.2)'
+                  project.type === 'web' ? 'rgba(59, 130, 246, 0.2)' :
+                  project.type === 'ecommerce' ? 'rgba(22, 163, 74, 0.2)' :
+                  'rgba(147, 51, 234, 0.2)'
                 }
                 className="h-full bg-white"
               >
@@ -185,9 +170,9 @@ const PortfolioSection = () => {
                     <div className="flex items-center gap-2">
                       {getTypeIcon(project.type)}
                       <span className={`text-xs font-medium px-2 py-1 rounded-full border ${getTypeColor(project.type)}`}>
-                        {project.type === 'academic' ? 'Académique' :
-                         project.type === 'professional' ? 'Professionnel' :
-                         project.type === 'personal' ? 'Personnel' : 'Certification'}
+                        {project.type === 'web' ? 'Site web' :
+                         project.type === 'ecommerce' ? 'E-commerce' :
+                         'Immobilier'}
                       </span>
                     </div>
                   </div>
@@ -204,7 +189,7 @@ const PortfolioSection = () => {
                   <h3 className="text-xl font-bold mb-2 text-gray-800">{project.title}</h3>
                   <p className="text-gray-600 mb-4 flex-grow">{project.description}</p>
                   
-                  <div className="flex flex-wrap gap-2 mt-auto">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map(tag => (
                       <span 
                         key={tag} 
@@ -214,6 +199,18 @@ const PortfolioSection = () => {
                       </span>
                     ))}
                   </div>
+                  
+                  {project.website && (
+                    <a 
+                      href={project.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors flex items-center gap-1"
+                    >
+                      <FaGlobe size={14} />
+                      Visiter le site
+                    </a>
+                  )}
                 </div>
               </FloatingCard>
             </motion.div>
