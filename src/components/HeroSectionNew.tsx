@@ -119,7 +119,8 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="inline-block px-3 py-1.5 mb-4 sm:mb-6 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 font-medium text-xs sm:text-sm border border-indigo-100 dark:border-indigo-700/30">
+                <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 sm:mb-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 font-semibold text-sm sm:text-base border-2 border-indigo-300 dark:border-indigo-600 shadow-lg">
+                  <FaBriefcase className="text-indigo-700 dark:text-indigo-300" />
                   Recherche d'alternance 2025-2026 • Bachelor ACHATS ET SUPPLY CHAIN
                 </div>
               </motion.div>
@@ -148,7 +149,11 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed"
               >
-                Étudiant en Bachelor Supply Chain, je cherche une alternance pour mettre en œuvre mes compétences en logistique, commerce et management. Doté d'un bon relationnel et motivé par l'amélioration continue, je souhaite rejoindre une entreprise où je pourrais progresser et apporter une valeur concrète.
+                Passionné par la tech et l'entrepreneuriat, j'ai lancé Fiabilitech avec une conviction : le digital doit être puissant, fluide et aligné avec vos objectifs.
+                <br/><br/>
+                Aujourd'hui, je transforme cette vision en solutions web et mobile sur mesure, en combinant rigueur technique, gestion de projet agile et une obsession : vos résultats.
+                <br/><br/>
+                Besoin d'un partenaire qui allie créativité et exécution sans compromis? Parlons-en.
               </motion.p>
               
               <div className="flex flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-10">
