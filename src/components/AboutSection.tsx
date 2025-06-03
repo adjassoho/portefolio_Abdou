@@ -93,7 +93,11 @@ const AboutSection = () => {
                   viewport={{ once: true }}
                 >
                   <h3 className="font-bold text-lg">SAIBOU ABDOU SALAM</h3>
-                  <p className="text-sm opacity-90">Co-Fondateur de Fiabilitech</p>
+                  <p className="text-sm opacity-90">
+                    <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                      Fondateur de FiabliTech
+                    </a>
+                  </p>
                 </motion.div>
               </motion.div>
               
@@ -116,7 +120,11 @@ const AboutSection = () => {
                 <div className="flex flex-wrap items-center gap-y-2">
                   <h3 className="text-xl text-blue-600 font-medium">Étudiant en Bachelor Supply Chain</h3>
                   <span className="mx-3 text-gray-400 hidden sm:inline">|</span>
-                  <h3 className="text-xl text-indigo-600 font-medium">Co-Fondateur Fiabilitech</h3>
+                  <h3 className="text-xl text-indigo-600 font-medium">
+                    <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                      Fondateur de FiabliTech
+                    </a>
+                  </h3>
                 </div>
               </div>
               
@@ -140,11 +148,17 @@ const AboutSection = () => {
                   <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-full p-2">
                     <FaCode className="text-white text-xl" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800">À propos de Fiabilitech</h3>
+                  <h3 className="text-xl font-bold text-gray-800">
+                    <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                      À propos de Fiabilitech
+                    </a>
+                  </h3>
                 </div>
                 
                 <p className="text-gray-600 mb-4">
-                  FiabliTech est une agence de développement web et mobile spécialisée dans la création de designs graphiques et de maquettes UI/UX. Chez Fiabilitech, nous combinons expertise technique et vision commerciale pour offrir des solutions digitales complètes et innovantes.
+                  <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="font-semibold text-indigo-600 hover:underline">
+                    FiabliTech
+                  </a> est une agence de développement web et mobile spécialisée dans la création de designs graphiques et de maquettes UI/UX. Chez Fiabilitech, nous combinons expertise technique et vision commerciale pour offrir des solutions digitales complètes et innovantes.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-3 mt-3">

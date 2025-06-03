@@ -136,7 +136,9 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 </h1>
                 <div className="h-1.5 w-24 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full mb-2 sm:mb-3"></div>
                 <h2 className="text-xl sm:text-2xl lg:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold">
-                  Fondateur Fiabilitech
+                  <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    Fondateur Fiabilitech
+                  </a>
                 </h2>
               </motion.div>
               

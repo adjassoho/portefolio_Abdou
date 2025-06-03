@@ -258,8 +258,22 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
             >
               <span className="block mb-1">SAIBOU</span>
               <span className="block mb-1">ABDOU SALAM</span>
-              <div className="h-1.5 w-24 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full mt-3 mb-3"></div>
-              <span className="text-2xl sm:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold">Co-Fondateur de Fiabilitech</span>
+              <motion.div 
+                className="h-1.5 w-24 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full mb-3"
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: "6rem", opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              ></motion.div>
+              <motion.h2 
+                className="text-2xl sm:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              >
+                <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Fondateur de FiabliTech
+                </a>
+              </motion.h2>
             </motion.h1>
             
             <motion.div 

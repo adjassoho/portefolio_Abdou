@@ -241,7 +241,9 @@ const HeroSectionUpdated: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 0.9 }}
                   whileHover={{ y: -5, color: "#6366f1" }}
                 >
-                  Co-Fondateur de Fiabilitech
+                  <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    Fondateur de FiabliTech
+                  </a>
                 </motion.h2>
               </motion.div>
               
@@ -536,7 +538,7 @@ const HeroSectionUpdated: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                           src="/images/profil.jpg" 
                           alt="SAIBOU ABDOU SALAM" 
                           fill
-                          className="object-cover object-top"
+                          className="object-cover object-top rounded-lg"
                           priority
                           sizes="(max-width: 768px) 320px, 400px"
                           onError={(e: any) => {
@@ -570,35 +572,14 @@ const HeroSectionUpdated: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                     </div>
                     
                     {/* Informations en bas de l'image */}
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 1 }}
-                      className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-4 border-t border-gray-100 dark:border-gray-700"
-                      whileHover={{ 
-                        backgroundColor: isDarkMode ? "rgba(31, 41, 55, 0.98)" : "rgba(255, 255, 255, 0.98)",
-                        y: -3
-                      }}
-                    >
-                      <motion.h3 
-                        className="text-lg font-bold text-gray-900 dark:text-white"
-                        initial={{ opacity: 0, x: -5 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 1.1 }}
-                        whileHover={{ x: 2 }}
-                      >
-                        SAIBOU ABDOU SALAM
-                      </motion.h3>
-                      <motion.p 
-                        className="text-sm text-gray-600 dark:text-gray-300"
-                        initial={{ opacity: 0, x: -5 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 1.2 }}
-                        whileHover={{ x: 2 }}
-                      >
-                        Co-Fondateur de Fiabilitech
-                      </motion.p>
-                    </motion.div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
+                      <h3 className="text-lg font-semibold">SAIBOU ABDOU SALAM</h3>
+                      <p className="text-sm opacity-90">
+                        <a href="https://fiablitech.fr/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                          Fondateur de FiabliTech
+                        </a>
+                      </p>
+                    </div>
                   </div>
 
                   {/* Badge 2025 amélioré */}
