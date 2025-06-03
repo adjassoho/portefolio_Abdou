@@ -9,9 +9,9 @@ interface ProfileCardEnhancedProps {
   name: string;
   role: string;
   imageSrc: string;
-  currentPosition: string;
-  currentCompany: string;
-  currentPeriod: string;
+  currentPosition?: string;
+  currentCompany?: string;
+  currentPeriod?: string;
 }
 
 const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
@@ -106,7 +106,7 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
                       src={imageSrc} 
                       alt={name} 
                       fill
-                      className="object-cover object-top rounded-2xl"
+                      className="object-cover object-center rounded-2xl"
                       priority
                       sizes="(max-width: 768px) 280px, 380px"
                       onError={(e: any) => {
@@ -170,7 +170,7 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
 
           {/* Badge année - rendu conditionnel pour mobile */}
           <motion.div
-            className="absolute top-4 right-4 z-30 bg-indigo-600 text-white rounded-full h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center shadow-lg"
+            className="absolute top-4 right-4 z-30 bg-indigo-600 text-white rounded-full h-16 w-auto px-3 sm:h-20 sm:px-4 flex items-center justify-center shadow-lg text-center"
             initial={{ scale: 0, rotate: -15 }}
             animate={{ 
               scale: 1, 
@@ -188,7 +188,7 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
               }
             }}
           >
-            <span className="font-bold text-xs sm:text-sm">2025</span>
+            <span className="font-bold text-xs sm:text-sm leading-tight">Alternance<br/>2025-2026</span>
           </motion.div>
         </motion.div>
 
@@ -269,28 +269,6 @@ const ProfileCardEnhanced: React.FC<ProfileCardEnhancedProps> = ({
               <FaCode className="text-purple-600 dark:text-purple-400 text-sm sm:text-base" />
             </div>
             <span className="font-bold text-sm sm:text-base text-purple-600 dark:text-purple-400">Pro</span>
-          </div>
-        </motion.div>
-
-        {/* Badge d'expérience repositionné pour ne plus superposer le nom et le rôle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 1.8, duration: 0.7 }}
-          className="absolute bottom-16 -right-28 sm:bottom-20 sm:-right-36 bg-white dark:bg-gray-800 shadow-xl rounded-xl p-3 sm:p-4 max-w-[180px] sm:max-w-xs z-20 backdrop-blur-sm border border-gray-100 dark:border-gray-700"
-        >
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-              <FaBriefcase className="text-white text-sm sm:text-base" />
-            </div>
-            <div>
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Actuellement</p>
-              <h4 className="font-medium text-sm sm:text-base text-gray-800 dark:text-gray-100">{currentPosition}</h4>
-            </div>
-          </div>
-          <div className="flex flex-col ml-11">
-            <span className="text-xs sm:text-sm text-gray-800 dark:text-gray-200">{currentCompany}</span>
-            <span className="text-xs text-indigo-600 dark:text-indigo-400">{currentPeriod}</span>
           </div>
         </motion.div>
       </motion.div>

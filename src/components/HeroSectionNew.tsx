@@ -107,9 +107,6 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 name="SAIBOU ABDOU SALAM"
                 role="Fondateur de Fiabilitech"
                 imageSrc="/images/profil.jpg"
-                currentPosition="Alternance Immobilier"
-                currentCompany="Agence de la gare"
-                currentPeriod="2024-2025"
               />
             </div>
           </div>
@@ -139,7 +136,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 </h1>
                 <div className="h-1.5 w-24 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full mb-2 sm:mb-3"></div>
                 <h2 className="text-xl sm:text-2xl lg:text-3xl text-indigo-600 dark:text-indigo-400 font-semibold">
-                  Fondateur de Fiabilitech
+                  Fondateur Fiabilitech
                 </h2>
               </motion.div>
               
@@ -149,7 +146,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed"
               >
-                Passionné par le digital et l'entrepreneuriat, je suis le fondateur de Fiabilitech, une entreprise spécialisée dans le développement web. Fort de cette expérience, j'ai développé des compétences solides en gestion de projet, relation client et solutions numériques sur mesure. Curieux, polyvalent et orienté résultats, je mets mon expertise au service de chaque projet avec rigueur et créativité.
+                Étudiant en Bachelor Supply Chain, je cherche une alternance pour mettre en œuvre mes compétences en logistique, commerce et management. Doté d'un bon relationnel et motivé par l'amélioration continue, je souhaite rejoindre une entreprise où je pourrais progresser et apporter une valeur concrète.
               </motion.p>
               
               <div className="flex flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-10">

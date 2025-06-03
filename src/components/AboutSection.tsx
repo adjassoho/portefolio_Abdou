@@ -144,7 +144,7 @@ const AboutSection = () => {
                 </div>
                 
                 <p className="text-gray-600 mb-4">
-                  Co-fondateur de Fiabilitech, une agence de développement web et mobile spécialisée dans la création de designs graphiques et de maquettes UI/UX. Chez Fiabilitech, nous combinons expertise technique et vision commerciale pour offrir des solutions digitales complètes et innovantes.
+                  FiabliTech est une agence de développement web et mobile spécialisée dans la création de designs graphiques et de maquettes UI/UX. Chez Fiabilitech, nous combinons expertise technique et vision commerciale pour offrir des solutions digitales complètes et innovantes.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-3 mt-3">
@@ -197,8 +197,8 @@ const AboutSection = () => {
                     </li>
                     <li className="flex items-center text-gray-600">
                       <FaPhone className="mr-3 text-blue-600" />
-                      <a href="tel:+33767438781" className="hover:text-blue-600 transition-colors">
-                        +33 7 67 43 87 81
+                      <a href="tel:0651104334" className="hover:text-blue-600 transition-colors">
+                        0651104334
                       </a>
                     </li>
                     <li className="flex items-center text-gray-600">
@@ -222,19 +222,19 @@ const AboutSection = () => {
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <span className="inline-block h-2 w-2 bg-blue-600 rounded-full mt-2 mr-2"></span>
-                      <span className="text-gray-600">Valider mon Bachelor Supply Chain avec excellence</span>
+                      <span className="text-gray-600">Approfondir mes compétences en optimisation des flux et gestion des approvisionnements</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block h-2 w-2 bg-blue-600 rounded-full mt-2 mr-2"></span>
-                      <span className="text-gray-600">Acquérir des compétences en optimisation de la politique de gestion et d'approvisionnement d'une organisation en vu de ma formation Bachelor Supply Chain </span>
+                      <span className="text-gray-600">Valider mon Bachelor avec excellence et poursuivre vers un Master appliqué</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block h-2 w-2 bg-blue-600 rounded-full mt-2 mr-2"></span>
-                      <span className="text-gray-600">Développer mon réseau professionnel</span>
+                      <span className="text-gray-600">Construire un réseau professionnel solide et contribuer à des projets concrets</span>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block h-2 w-2 bg-blue-600 rounded-full mt-2 mr-2"></span>
-                      <span className="text-gray-600">Poursuivre vers un master professionnelle</span>
+                      <span className="text-gray-600">M'épanouir dans un environnement dynamique, alliant sens et performance.</span>
                     </li>
                   </ul>
                 </FloatingCard>
@@ -339,7 +339,7 @@ const AboutSection = () => {
               <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
             </svg>
             <p className="text-lg sm:text-xl italic leading-relaxed mb-4">
-              "Je suis jeune, déterminé et motivé. Je m’intègre facilement au sein d’une équipe et suis à la recherche d’expériences enrichissantes dans un environnement stimulant, qui me permette d’élargir mes compétences et d’explorer divers domaines et secteurs d’activité."
+              "Je suis jeune, déterminé et motivé. Je m'intègre facilement au sein d'une équipe et suis à la recherche d'expériences enrichissantes dans un environnement stimulant, qui me permette d'élargir mes compétences et d'explorer divers domaines et secteurs d'activité."
             </p>
             <footer className="font-semibold">- SAIBOU ABDOU SALAM</footer>
           </blockquote>

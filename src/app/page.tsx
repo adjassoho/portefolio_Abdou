@@ -52,6 +52,22 @@ export default function Home() {
       color: "border-indigo-600",
     },
     {
+      id: "carrefour",
+      title: "Carrefour express",
+      subtitle: "Stage de 8 semaines",
+      location: "Rouen",
+      date: "2023-2024",
+      content: [
+        "Compétences en vente et relation client: Accueil et conseil client, Techniques de vente (argumentation, fidélisation), Gestion des réclamations, Mise en place d'animations commerciales",
+        "Compétences en gestion de magasin: Réception et contrôle des livraisons, Mise en rayon (facing, rotation des produits), Gestion des stocks et des inventaires, Suivi des indicateurs de performance (chiffre d'affaires, marges)",
+        "Compétences en caisse: Encaissement et rendu monnaie, Gestion des moyens de paiement, Ouverture et fermeture de caisse, Application des procédures de sécurité",
+        "Compétences en hygiène et sécurité: Respect des normes d'hygiène (surtout pour les produits frais), Respect des consignes de sécurité alimentaire, Prévention des pertes et vols",
+        "Compétences en travail d'équipe et autonomie: Collaboration avec les collègues et la hiérarchie, Capacité d'adaptation à différents postes, Prise d'initiative et autonomie progressive",
+        "Compétences en gestion administrative (selon le poste): Suivi des commandes fournisseurs, Gestion des documents commerciaux, Participation à l'organisation des plannings"
+      ],
+      color: "border-red-600",
+    },
+    {
       id: "uexpress",
       title: "U Express",
       subtitle: "Stage de 8 semaines",
@@ -175,7 +191,7 @@ export default function Home() {
           <SectionTitle
             title="Contact"
             subtitle="Prenons contact"
-            description="N'hésitez pas à me contacter pour toute opportunité de stage ou question"
+            description="N'hésitez pas à me contacter pour toute opportunité d'alternance et de stage ou question"
           />
           <div className="mt-10">
             <ContactForm />

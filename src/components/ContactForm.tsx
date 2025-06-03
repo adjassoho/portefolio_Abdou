@@ -142,7 +142,7 @@ const ContactForm = () => {
       <div className="md:col-span-2 space-y-6">
         <h3 className="text-2xl font-bold text-gray-800 mb-4">Contactez-moi</h3>
         <p className="text-gray-600 mb-8">
-          N'hésitez pas à me contacter pour toute opportunité de stage ou question.
+          N'hésitez pas à me contacter pour toute opportunité d'alternance et de stage ou question.
         </p>
         
         <div className="space-y-6">
@@ -174,17 +174,14 @@ const ContactForm = () => {
             transition={{ delay: 0.1, duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="rounded-full bg-green-100 p-3 text-green-600">
-              <FaPhone size={20} />
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-800">Téléphone</h4>
-              <a 
-                href="tel:+33767438781" 
-                className="text-blue-600 hover:underline transition-all"
-              >
-                +33 7 67 43 87 81
-              </a>
+            <div className="flex items-center">
+              <FaPhone className="text-xl text-indigo-600 mr-4" />
+              <div>
+                <h4 className="font-semibold text-gray-800">Téléphone</h4>
+                <a href="tel:0651104334" className="text-gray-600 hover:text-indigo-600 transition-colors">
+                  0651104334
+                </a>
+              </div>
             </div>
           </motion.div>
           

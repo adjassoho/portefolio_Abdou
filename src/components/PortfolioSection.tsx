@@ -17,8 +17,6 @@ interface Project {
 }
 
 const PortfolioSection = () => {
-  const [filter, setFilter] = useState<string | null>(null);
-  
   const projects: Project[] = [
     {
       id: 1,
@@ -26,7 +24,7 @@ const PortfolioSection = () => {
       description: "Nous avons développé une boutique en ligne complète pour DIM, une marque emblématique de lingerie française qui souhaitait optimiser son expérience de vente en ligne. Notre approche a combiné un design élégant et moderne reflétant l'identité premium de la marque avec une expérience utilisateur soigneusement optimisée pour maximiser les conversions.",
       tags: ["E-commerce", "Responsive", "UX/UI", "Gestion de stock", "Click & Collect"],
       type: "ecommerce",
-      imageUrl: "https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=DIM+E-commerce",
+      imageUrl: "/images/DIM.png",
       website: "https://www.dim.com/"
     },
     {
@@ -35,7 +33,7 @@ const PortfolioSection = () => {
       description: "By G2S Immobilier, une agence immobilière basée à Bondy Paris, souhaitait développer une présence en ligne reflétant son expertise et permettant de présenter son portefeuille de biens. Notre équipe a conçu un site web élégant et fonctionnel mettant en valeur les propriétés disponibles et facilitant le contact avec les clients potentiels.",
       tags: ["Immobilier", "Recherche avancée", "Galerie photo", "Responsive"],
       type: "immobilier",
-      imageUrl: "https://via.placeholder.com/800x400/8B5CF6/FFFFFF?text=G2S+Immobilier",
+      imageUrl: "/images/G2S.png",
       website: "https://www.byg2simmobilier.fr/"
     },
     {
@@ -44,14 +42,10 @@ const PortfolioSection = () => {
       description: "Maxi Meubles souhaitait lancer une boutique en ligne pour commercialiser leur gamme de mobilier design à prix abordable. Notre équipe a conçu une plateforme e-commerce complète, mettant en valeur leur catalogue de produits et optimisant l'expérience d'achat pour maximiser les conversions.",
       tags: ["E-commerce", "Mobilier", "UX/UI", "Catalogue produit", "Responsive"],
       type: "ecommerce",
-      imageUrl: "https://via.placeholder.com/800x400/10B981/FFFFFF?text=Maxi+Meubles",
+      imageUrl: "/images/Maxi.png",
       website: "https://www.maxi-meubles.fr/"
     }
   ];
-
-  const filteredProjects = filter
-    ? projects.filter(project => project.type === filter)
-    : projects;
 
   // Animation variants
   const containerVariants = {
@@ -100,53 +94,14 @@ const PortfolioSection = () => {
           description="Découvrez les sites web développés par Fiablitech"
         />
 
-        <div className="flex flex-wrap justify-center gap-4 mb-10">
-          <button
-            onClick={() => setFilter(null)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 
-              ${filter === null 
-                ? 'bg-indigo-600 text-white shadow-md' 
-                : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
-          >
-            Tous
-          </button>
-          <button
-            onClick={() => setFilter('web')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${filter === 'web' 
-                ? 'bg-blue-600 text-white shadow-md' 
-                : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
-          >
-            <FaGlobe /> Sites web
-          </button>
-          <button
-            onClick={() => setFilter('ecommerce')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${filter === 'ecommerce' 
-                ? 'bg-green-600 text-white shadow-md' 
-                : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
-          >
-            <FaShoppingCart /> E-Commerce
-          </button>
-          <button
-            onClick={() => setFilter('immobilier')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2
-              ${filter === 'immobilier' 
-                ? 'bg-purple-600 text-white shadow-md' 
-                : 'bg-white text-gray-600 border border-gray-300 hover:bg-gray-50'}`}
-          >
-            <FaHome /> Immobilier
-          </button>
-        </div>
-
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {filteredProjects.map(project => (
+          {projects.map(project => (
             <motion.div key={project.id} variants={itemVariants}>
               <FloatingCard 
                 highlight 
