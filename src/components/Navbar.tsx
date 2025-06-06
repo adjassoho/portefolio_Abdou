@@ -91,7 +91,6 @@ const Navbar = () => {
           className={`mx-auto my-2 px-4 py-3 rounded-full transition-all duration-300 ${
             isScrolled ? 'shadow-lg' : ''
           }`}
-          blur={isScrolled ? 'backdrop-blur-md' : 'backdrop-blur-sm'}
           border={isScrolled}
           glow={isScrolled}
           width="max-w-7xl"

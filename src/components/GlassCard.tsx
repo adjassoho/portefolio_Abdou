@@ -20,7 +20,7 @@ interface GlassCardProps {
 const GlassCard: React.FC<GlassCardProps> = ({
   children,
   className = '',
-  blur = 'backdrop-blur-md',
+  blur = '',
   border = true,
   glow = false,
   interactive = true,

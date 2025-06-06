@@ -24,7 +24,6 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
   
   // Parallax effects
   const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   
   const handleExploreClick = () => {
     if (onExploreClick) {
@@ -84,19 +83,19 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
           </svg>
           
           {/* Large circle decoration */}
-          <div className="absolute -top-1/4 -right-1/4 w-2/3 h-2/3 rounded-full bg-gradient-to-br from-indigo-500/10 to-blue-500/5 blur-3xl"></div>
-          <div className="absolute -bottom-1/4 -left-1/4 w-2/3 h-2/3 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/5 blur-3xl"></div>
+          <div className="absolute -top-1/4 -right-1/4 w-2/3 h-2/3 rounded-full bg-gradient-to-br from-indigo-500/10 to-blue-500/5"></div>
+          <div className="absolute -bottom-1/4 -left-1/4 w-2/3 h-2/3 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/5"></div>
         </div>
         
         {/* Glass panes */}
-        <div className="hidden lg:block absolute top-0 left-0 w-1/3 h-screen bg-white/20 dark:bg-indigo-600/5 backdrop-blur-3xl skew-x-12 transform-gpu"></div>
-        <div className="hidden lg:block absolute top-0 right-0 w-1/4 h-screen bg-white/10 dark:bg-blue-600/5 backdrop-blur-3xl -skew-x-12 transform-gpu"></div>
+        <div className="hidden lg:block absolute top-0 left-0 w-1/3 h-screen bg-white/20 dark:bg-indigo-600/5 skew-x-12 transform-gpu"></div>
+        <div className="hidden lg:block absolute top-0 right-0 w-1/4 h-screen bg-white/10 dark:bg-blue-600/5 -skew-x-12 transform-gpu"></div>
       </div>
       
       {/* Main content */}
       <motion.div 
         className="container mx-auto px-4 z-10"
-        style={{ y, opacity }}
+        style={{ y }}
       >
         {/* Structure de mise en page révisée pour mobile avec ordre ajusté */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-10 lg:py-0 lg:gap-16">
@@ -161,7 +160,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
                 >
                   <FaBriefcase className="text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm" />
                   <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Entrepreneur</span>
@@ -171,7 +170,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
-                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
                 >
                   <FaCode className="text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm" />
                   <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Développement Web</span>
@@ -181,7 +180,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 }}
-                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
+                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/70 dark:bg-gray-800/70 rounded-full shadow-sm border border-gray-100 dark:border-gray-700"
                 >
                   <FaGraduationCap className="text-indigo-600 dark:text-indigo-400 text-xs sm:text-sm" />
                   <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Bachelor Supply Chain</span>
@@ -198,7 +197,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 0.9 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
+                  className="bg-white/80 dark:bg-gray-800/80 p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
                   aria-label="Instagram"
                 >
                   <FaInstagram size={18} className="text-gradient-instagram" />
@@ -213,7 +212,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 1.0 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
+                  className="bg-white/80 dark:bg-gray-800/80 p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
                   aria-label="LinkedIn"
                 >
                   <FaLinkedin size={18} />
@@ -226,7 +225,7 @@ const HeroSectionNew: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   transition={{ duration: 0.5, delay: 1.1 }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
+                  className="bg-white/80 dark:bg-gray-800/80 p-2.5 sm:p-3 rounded-full text-gray-800 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700"
                   aria-label="Email"
                 >
                   <FaEnvelope size={18} />
